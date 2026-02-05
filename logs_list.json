@@ -1,0 +1,7 @@
+{
+    "DEBUG":["The connection speed is good", "Ping is good", "All files are normal"],
+    "INFO":["User logged in","User logged out","User updated profile photo","User changed phone number"],
+    "WARN":["Low disk space", "Bad connection speed","Slow network connection", "High CPU usage"],
+    "ERROR":["Connection timeout","Incorrect password","File not found"],
+    "FATAL":["Program crash"]
+}
