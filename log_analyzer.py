@@ -23,12 +23,12 @@ if file_path.exists():
                     logs.append(i)
 
 else: 
-    print('«Ошибка: путь не является файлом»')
+    print('«Error: Path is not a file»')
     exit()
 
 def count_logs(logs):
     count = len(logs)
-    total = f"\nEvents : {count}\n"
+    total = f"\n{"EVENTS".ljust(7)} : {count}\n"
     count_values = {"DEBUG":0, "INFO":0, "WARN":0,
                     "ERROR":0, "FATAL":0, "UNKNOWN": 0}
     for log_lvl in logs:
@@ -41,15 +41,24 @@ def count_logs(logs):
     print(total)
     for i in count_values:
         if count_values[i] != 0:
-            print(f"{i.ljust(6)} : {count_values[i]}")
+            print(f"{i.ljust(7)} : {count_values[i]}")
+    
+    with open("report.txt", 'w') as f: # create statistics file
+        f.write(f"{total.strip()}\n\n")
+        for i in count_values:
+            if count_values[i] != 0:
+                f.write(f"{i.ljust(7)} : {count_values[i]}\n")
+        f.write(f"\nLOGS:\n")
+        for i in logs:
+            f.write(f"\n{i.strip()}")
+        
 
 if logs:
     count_logs(logs)
 else:
-    print('Проверьте файл или путь к файлу')
+    print('«Check file or file path»')
 
 
-# логика для показа всех логов
-if args.detail:
+if args.detail: # logic for show all logs
     for i in logs:
         print(i.strip())
