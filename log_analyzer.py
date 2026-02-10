@@ -1,13 +1,30 @@
 from pathlib import Path
+import argparse
 
-file_path = Path(__file__).parent / 'dates.log'
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-f",'--file',help='input file name with logs',
+                    default = 'dates.log')
+parser.add_argument('-d','--detail',help = 'show all logs',action='store_true')
+args = parser.parse_args()
+logs_file = args.file
+
+
+
+file_path = Path(logs_file)
 
 logs = []
+if file_path.exists():
+    if file_path.is_file():
+        with open(file_path, 'r') as file:
+            for i in file:
+                if i.strip():
+                    logs.append(i)
 
-with open(file_path, 'r') as file:
-    for i in file:
-        if i.strip():
-            logs.append(i)
+else: 
+    print('«Ошибка: путь не является файлом»')
+    exit()
 
 def count_logs(logs):
     count = len(logs)
@@ -26,4 +43,13 @@ def count_logs(logs):
         if count_values[i] != 0:
             print(f"{i.ljust(6)} : {count_values[i]}")
 
-count_logs(logs)
+if logs:
+    count_logs(logs)
+else:
+    print('Проверьте файл или путь к файлу')
+
+
+# логика для показа всех логов
+if args.detail:
+    for i in logs:
+        print(i.strip())
