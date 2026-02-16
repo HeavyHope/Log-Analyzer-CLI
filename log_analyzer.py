@@ -28,7 +28,7 @@ logs = []
 if file_path.exists():
     if file_path.is_file():
         try:
-            with open(file_path, 'r') as file:
+            with open(file_path, 'r',encoding='utf-8') as file:
                 for i in file:
                     if i.strip():
                         logs.append(i)
@@ -79,5 +79,6 @@ else:
 
 
 if args.detail: # logic for show all logs
+    print('\n')
     for i in logs:
         print(i.strip())

@@ -3,3 +3,4 @@ dates.log
 report.txt
 __pycache__
 .pytest_cache
+test_logs.log
