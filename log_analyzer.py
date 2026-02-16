@@ -21,7 +21,7 @@ if args.logs: # check info flag
             f"2026-02-12 13:56:01 | FATAL | Program crash\n"
             )
     exit()
-
+base_path = Path(__file__).parent
 file_path = Path(logs_file)
 
 logs = []
@@ -62,7 +62,7 @@ def count_logs(logs):
         print(f"Use -h or --logs to see the required log format")
         exit()
     
-    with open("report.txt", 'w') as f: # create statistics file
+    with open(base_path / "report.txt", 'w') as f: # create statistics file
         f.write(f"{total.strip()}\n\n")
         for i in count_values:
             if count_values[i] != 0:
