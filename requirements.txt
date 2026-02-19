@@ -1,0 +1,9 @@
+allure-pytest==2.15.3
+allure-python-commons==2.15.3
+attrs==25.4.0
+colorama==0.4.6
+iniconfig==2.3.0
+packaging==26.0
+pluggy==1.6.0
+Pygments==2.19.2
+pytest==9.0.2
