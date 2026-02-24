@@ -1,0 +1,22 @@
+name: pytest_log_analyzer # Заглавное имя всего что ниже
+
+on: # блок события
+  push: # после того как зальем на гитхаб
+    branches: ["main"] # а конкретно на ветку мейн
+
+jobs: # список дел № 1-й
+  build: # название конкретного дела, может быть любое
+    runs-on: ubuntu-latest # на какой ос запустить
+    steps: #список действий(блок действий начинается со знака "- ")
+      - name: checkout rep code # заголовок блока
+        uses: actions/checkout@v4 # задание скачать наш репозиторий
+      - name: install python 3.12 # заголовок блока
+        uses: actions/setup-python@v5 # задание установить пайтон
+        with: # блок доп настроек
+          python-version: "3.12" # пайтон версии 3.12
+      - name: install pip list
+        run: | # запусти в терминале то что ниже
+          python -m pip install --upgrade pip # ("|" позволяет объед строки)
+          pip install -r requirements.txt
+      - name: run pytest
+        run: pytest
