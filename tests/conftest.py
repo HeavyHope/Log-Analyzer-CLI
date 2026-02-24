@@ -14,7 +14,7 @@ def test_log():
 @pytest.fixture
 def run_analyzer():
     def wrapper(path : tuple, flags:list = None):
-        command = ['py',path[0],'-f',path[1]]
+        command = ['python',path[0],'-f',path[1]]
         if flags:
             command.extend(flags)
         return subprocess.run(command, capture_output=True, text=True)
